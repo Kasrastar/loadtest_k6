@@ -1,0 +1,26 @@
+{
+    "domain": "snapptrip.com",
+    "protocol": "https",
+    "apis": [
+      {
+        "name": "tour",
+        "active": true,
+        "subdomain": "tourapi",
+        "path": "/listing/search",
+        "payload": {
+          "origin": "THR",
+          "destination": "MHD",
+          "departureDate": "2024-12-31",
+          "returnDate": "2025-01-02",
+          "rooms": [
+            { 
+              "adultCount": 2, 
+              "children": [] 
+            }
+          ],
+          "filter": {}
+        }
+      }
+    ]
+  }
+  
