@@ -24,7 +24,7 @@
       },
       {
         "name": "villa",
-        "active": false,
+        "active": true,
         "http_method": "get",
         "subdomain": "hapi",
         "path": "/hotel/listing/v1/villa/search/location/state/",
@@ -40,7 +40,7 @@
       },
       {
         "name": "dom-hotel",
-        "active": true,
+        "active": false,
         "http_method": "get",
         "subdomain": "hapi",
         "path": "/hotel/api/v2/search-city",

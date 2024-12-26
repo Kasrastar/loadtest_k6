@@ -15,28 +15,55 @@ class StatusCodeValidationStrategy extends BaseTestSterategy {
   }
 }
 
-class SchemaValidationStrategy extends BaseTestStrategy {
-  constructor(schema) {
+class SchemaValidationStrategy extends BaseTestSterategy {
+  constructor() {
     super();
-    this.schema = schema;
   }
   
-  execute(response) {
-    const isValid = this.validateSchema(response.json(), this.schema);
+  execute(productName, response) {
+    
+    let isValid = true
+
+    if (productName == "villa") {
+      isValid = this.villaValidateSchema(response.json());
+    } 
+    
     return check(response, {
       'response schema is valid': () => isValid,
     });
   }
   
-  validateSchema(data, schema) {
-    // Needes to be implemented tomarrow
+  villaValidateSchema(responseBody) {
+    if (!responseBody || typeof responseBody !== 'object') {
+      return false;
+    }
+  
+    if (typeof responseBody.success !== 'boolean') {
+      console.log('Invalid type for "success": expected boolean');
+      return false;
+    }
+  
+    if (typeof responseBody.total !== 'number' || !Number.isInteger(responseBody.total)) {
+      console.log('Invalid type for "total": expected integer');
+      return false;
+    }
+  
+    if (!Array.isArray(responseBody.data)) {
+      console.log('Invalid type for "data": expected array');
+      return false;
+    }
+  
+    if (responseBody.data.length === 0) {
+      console.log('Data array is empty');
+      return false;
+    }
   }
 }
 
 export function selectStrategy(apiName) {
   const strategies = {
     "tour": [new StatusCodeValidationStrategy()],
-    "villa": [new StatusCodeValidationStrategy()],
+    "villa": [new StatusCodeValidationStrategy(), new SchemaValidationStrategy()],
     "dom-hotel": [],
     "int-hotel": [new StatusCodeValidationStrategy()],
   };
