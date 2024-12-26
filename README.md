@@ -60,6 +60,12 @@ Build the Docker image with the following command:
 ```
 docker build -t k6-load-test .
 ```
+
+for your own custom __config.json__ file use below command to mount volume:
+```
+docker run -v path/to/custom_config.json:/loadtest_k6/config/config.json image_id
+```
+
 2. Run the load test
 After the image is built, run the container with:
 ```
