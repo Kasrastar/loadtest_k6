@@ -4,7 +4,7 @@
     "products": [
       {
         "name": "tour",
-        "active": true,
+        "active": false,
         "http_method": "post",
         "subdomain": "tourapi",
         "path": "/listing/search",
@@ -24,14 +24,14 @@
       },
       {
         "name": "villa",
-        "active": true,
+        "active": false,
         "http_method": "get",
         "subdomain": "hapi",
         "path": "/hotel/listing/v1/villa/search/location/state/",
         "payload": {
           "city_id": "100008",
           "from": "2024-12-31",
-          "to": "2024-01-02",
+          "to": "2025-01-02",
           "availability": "1",
           "version": "room",
           "capacity": "1",
@@ -55,7 +55,7 @@
       },
       {
         "name": "int-hotel",
-        "active": true,
+        "active": false,
         "http_method": "post",
         "subdomain": "hapi",
         "path": "/international-hotel/api/cities/city_id/hotels/availability",
@@ -76,7 +76,6 @@
           "filters": []
         }
       }
-
     ]
   }
   

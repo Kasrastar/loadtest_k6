@@ -53,7 +53,7 @@ class TourRequestGenerator {
 
   generateRequest() {
     const url = this.urlGenerator.generateURL(this.subdomain, this.path)
-     
+    // console.log(this.payload)
     const response = http.post(
       url,
       JSON.stringify(
@@ -99,9 +99,7 @@ class VillaRequestGenerator {
     )
 
     return response;
-
   }
-
 }
 
 class DomHotelRequestGenerator {
