@@ -1,10 +1,11 @@
 {
     "domain": "snapptrip.com",
     "protocol": "https",
-    "apis": [
+    "products": [
       {
         "name": "tour",
         "active": true,
+        "http_method": "post",
         "subdomain": "tourapi",
         "path": "/listing/search",
         "payload": {
@@ -20,7 +21,62 @@
           ],
           "filter": {}
         }
+      },
+      {
+        "name": "villa",
+        "active": true,
+        "http_method": "get",
+        "subdomain": "hapi",
+        "path": "/hotel/listing/v1/villa/search/location/state/",
+        "payload": {
+          "city_id": "100008",
+          "from": "2024-12-31",
+          "to": "2024-01-02",
+          "availability": "1",
+          "version": "room",
+          "capacity": "1",
+          "page": "1"
+        }
+      },
+      {
+        "name": "dom-hotel",
+        "active": true,
+        "http_method": "get",
+        "subdomain": "hapi",
+        "path": "/hotel/api/v2/search-city",
+        "payload": {
+          "city_id": "6433",
+          "date_from": "2024-12-31",
+          "date_to": "2024-01-02",
+          "page": "1",
+          "order_by": "selling",
+          "token": "Jek"
+        }
+      },
+      {
+        "name": "int-hotel",
+        "active": true,
+        "http_method": "post",
+        "subdomain": "hapi",
+        "path": "/international-hotel/api/cities/city_id/hotels/availability",
+        "payload": {
+          "city_id": "istanbul-tr",
+          "checkin": "2025-01-06",
+          "checkout": "2025-01-07",
+          "occupants": [
+              {
+                "adults": 1,
+                "children": []
+              }
+          ],
+          "sort": {
+            "field": "priority",
+            "order": "desc"
+          },
+          "filters": []
+        }
       }
+
     ]
   }
   
