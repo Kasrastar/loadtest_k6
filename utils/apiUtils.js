@@ -21,6 +21,16 @@ class URLGenerator {
     }
   }
 
+function generateHeaders(additionalHeaders = {}) {
+  const baseHeaders = {
+    'Content-Type': 'application/json',
+    'channel': 'website',
+    'clientId': 'website',
+  }
+
+  return { ...baseHeaders, ...additionalHeaders}
+}
+
 
 export class RequestGeneratorFactory {
   static createRequestGenerator(domain, protocol, product) {
@@ -53,19 +63,10 @@ class TourRequestGenerator {
 
   generateRequest() {
     const url = this.urlGenerator.generateURL(this.subdomain, this.path)
-    // console.log(this.payload)
     const response = http.post(
       url,
-      JSON.stringify(
-        this.payload
-      ),
-      { 
-        headers: { 
-          'Content-Type': 'application/json', 
-          'channel': 'website',
-          'clientId': 'website'
-        } 
-      }
+      JSON.stringify(this.payload),
+      { headers: generateHeaders()}
     )
 
     return response;
@@ -87,15 +88,9 @@ class VillaRequestGenerator {
     const params = this.urlGenerator.buildQueryString(this.payload)
     const url = this.urlGenerator.generateURL(this.subdomain, this.path + city_id + params )
 
-    const headers = {
-      'Content-Type': 'application/json',
-      'channel': 'website',
-      'clientId': 'website',
-    }
-
     const response = http.get(
       url,
-      { headers }
+      { headers: generateHeaders() }
     )
 
     return response;
@@ -113,15 +108,10 @@ class DomHotelRequestGenerator {
   generateRequest() {
     const params = this.urlGenerator.buildQueryString(this.payload)
     const url = this.urlGenerator.generateURL(this.subdomain, this.path + params)
-    const headers = {
-      'Content-Type': 'application/json',
-      'channel': 'website',
-      'clientId': 'website',
-    }
 
     const response = http.get(
       url,
-      { headers }
+      { headers: generateHeaders() }
     )
 
     return response;
@@ -141,18 +131,11 @@ class IntHotelRequestGenerator {
     const city_id = this.payload.city_id
     delete this.payload.city_id;
     const url = this.urlGenerator.generateURL(this.subdomain, this.path.replace('city_id', city_id))
-    const headers = {
-      'Content-Type': 'application/json',
-      'channel': 'website',
-      'clientId': 'website',
-    }
 
     const response = http.post(
       url,
-      JSON.stringify(
-        this.payload
-      ),
-      { headers }
+      JSON.stringify(this.payload),
+      { headers: generateHeaders() }
     )
 
     return response;
